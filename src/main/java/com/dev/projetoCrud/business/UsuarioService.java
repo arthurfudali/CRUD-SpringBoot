@@ -4,6 +4,8 @@ import com.dev.projetoCrud.infraestructure.entity.Usuario;
 import com.dev.projetoCrud.infraestructure.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UsuarioService {
     private final UsuarioRepository usuarioRepository;
@@ -20,6 +22,9 @@ public class UsuarioService {
         return usuarioRepository.findByEmail(email).orElseThrow(
                 () -> new RuntimeException("Erro ao buscar usuario por email")
         );
+    }
+    public List<Usuario> buscarTodosUsuarios() {
+        return usuarioRepository.findAll(); // Retorna a lista completa
     }
 
     public void deletarUsuarioPorEmail(String email) {
